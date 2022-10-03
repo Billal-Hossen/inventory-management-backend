@@ -31,3 +31,15 @@ exports.BbulkUpdateProductService = async (data) => {
   const result = await Promise.all(products)
   return result;
 }
+
+
+exports.deleteSingleProductService = async (id) => {
+
+  const result = await Product.deleteOne({ _id: id });
+  return result;
+}
+
+exports.BbulkDeleteProductService = async (ids) => {
+  const result = await Product.deleteMany({ _id: ids })
+  return result;
+}

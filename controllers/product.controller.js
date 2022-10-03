@@ -1,5 +1,11 @@
 
-const { getProductService, createProductService, updateProductService, BbulkUpdateProductService } = require("../services/product.service")
+const { getProductService,
+  createProductService,
+  updateProductService,
+  BbulkUpdateProductService,
+  deleteSingleProductService,
+  BbulkDeleteProductService
+} = require("../services/product.service")
 module.exports.getAllProducts = async (req, res) => {
   try {
 
@@ -51,7 +57,7 @@ module.exports.createProduct = async (req, res, next) => {
 
 }
 
-exports.updateProductController = async (req, res) => {
+exports.updateSingleProductController = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -85,6 +91,49 @@ exports.bulkUpdateProductController = async (req, res) => {
     res.status(400).json({
       success: false,
       message: "Can't updated product",
+      error: error.message
+    })
+  }
+}
+
+
+
+
+exports.deleteSingleProductController = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await deleteSingleProductService(id,);
+    res.status(200).json({
+      success: true,
+      message: "Deleted Successfully."
+    })
+
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Can't deleted product",
+      error: error.message
+    })
+  }
+}
+
+
+exports.bulkDeleteProductController = async (req, res) => {
+  console.log(req.body.ids)
+  try {
+
+
+    const product = await BbulkDeleteProductService(req.body.ids);
+    res.status(200).json({
+      success: true,
+      message: "Deleted Successfully Products."
+    })
+
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Can't deleted products",
       error: error.message
     })
   }
