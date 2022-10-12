@@ -7,6 +7,7 @@ const storeSchema = Schema({
     type: String,
     trim: true,
     required: [true, "Please provide a store name."],
+    lowercase: true,
     enum: {
       values: ["dhaka", "chittagong", "khulna", "barishal", "sylhet", "mymshing"],
       message: "{VALUE} is not a valid name."

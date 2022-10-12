@@ -1,6 +1,6 @@
 
 
-const { Schema, Model, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const validator = require('validator');
 const { ObjectId } = Schema.Types
 
@@ -17,14 +17,14 @@ const brandSchema = Schema(
     description: String,
     email: {
       type: String,
-      unique: true,
+      // unique: true,
       lowercase: true,
-      required: [true, "Please provide email."],
+      // required: [true, "Please provide email."],
       validate: [validator.isEmail, "Please provide a valiad email."]
     },
     website: {
       type: String,
-      required: [true, "Please provide your url"],
+      // required: [true, "Please provide your url"],
       validate: [validator.isURL, "Please provide valid url."]
     },
     location: String,

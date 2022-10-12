@@ -36,7 +36,7 @@ const productSchema = Schema({
         }
         let isValid = true;
         value.forEach(url => {
-          if (validator.isURL(url)) {
+          if (!validator.isURL(url)) {
             isValid = false;
           }
 
@@ -57,7 +57,8 @@ const productSchema = Schema({
     },
     id: {
       type: ObjectId,
-      ref: "Brand"
+      ref: "Brand",
+      requirted: true
     }
   },
   // quantity: {
